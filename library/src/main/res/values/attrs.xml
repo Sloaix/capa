@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CapaLayout">
+        <attr name="cp_state" format="enum">
+            <enum name="load" value="0"/>
+            <enum name="empty" value="1"/>
+            <enum name="error" value="2"/>
+            <enum name="content" value="3"/>
+        </attr>
+        <attr name="cp_load_layout" format="reference"/>
+        <attr name="cp_error_layout" format="reference"/>
+        <attr name="cp_empty_layout" format="reference"/>
+    </declare-styleable>
+</resources>
