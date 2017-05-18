@@ -20,13 +20,13 @@ import android.widget.ViewAnimator;
  */
 
 public class CapaLayout extends ViewAnimator {
-    public static final int STATE_LOAD = 0;
-    public static final int STATE_EMPTY = 1;
-    public static final int STATE_ERROR = 2;
-    public static final int STATE_CONTENT = 3;
+    public static final int LOAD = 0;
+    public static final int EMPTY = 1;
+    public static final int ERROR = 2;
+    public static final int CONTENT = 3;
 
 
-    private int mState = STATE_CONTENT;
+    private int mState = CONTENT;
 
     @LayoutRes
     private int mLoadLayout;
@@ -48,17 +48,30 @@ public class CapaLayout extends ViewAnimator {
     public CapaLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         receiveAttributes(attrs);
-        init();
     }
 
     private void receiveAttributes(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.CapaLayout);
-        mState = a.getInt(R.styleable.CapaLayout_cp_state, STATE_LOAD);
+        mState = a.getInt(R.styleable.CapaLayout_cp_state, LOAD);
         a.recycle();
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        init();
+    }
+
     private void init() {
+        if (getChildCount() == 0) {
+            throw new IllegalArgumentException("你必须提供一个content布局");
+        }
+
+        if (getChildCount() > 1) {
+            throw new IllegalArgumentException("你只能提供一个子布局");
+        }
+
         initViews();
         initAnimation();
     }
@@ -81,13 +94,13 @@ public class CapaLayout extends ViewAnimator {
 
 
         hideALl();
-        if (mState == STATE_LOAD) {
+        if (mState == LOAD) {
             mLoadView.setVisibility(VISIBLE);
-        } else if (mState == STATE_ERROR) {
+        } else if (mState == ERROR) {
             mEmptyView.setVisibility(VISIBLE);
-        } else if (mState == STATE_EMPTY) {
+        } else if (mState == EMPTY) {
             mErrorView.setVisibility(VISIBLE);
-        } else if (mState == STATE_CONTENT) {
+        } else if (mState == CONTENT) {
             mContentView.setVisibility(VISIBLE);
         }
 
@@ -120,6 +133,22 @@ public class CapaLayout extends ViewAnimator {
         }
         mState = state;
         setDisplayedChild(mState);
+    }
+
+    public void toContent() {
+        to(CONTENT);
+    }
+
+    public void toError() {
+        to(ERROR);
+    }
+
+    public void toLoad() {
+        to(LOAD);
+    }
+
+    public void toEmpty() {
+        to(EMPTY);
     }
 
 }

@@ -39,16 +39,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_load:
-                capaLayout.to(CapaLayout.STATE_LOAD);
+                capaLayout.toLoad();
                 break;
             case R.id.btn_error:
-                capaLayout.to(CapaLayout.STATE_ERROR);
+                capaLayout.toError();
                 break;
             case R.id.btn_empty:
-                capaLayout.to(CapaLayout.STATE_EMPTY);
+                capaLayout.toEmpty();
                 break;
             case R.id.btn_content:
-                capaLayout.to(CapaLayout.STATE_CONTENT);
+                capaLayout.toContent();
                 break;
             case R.id.capa_layout:
                 break;
