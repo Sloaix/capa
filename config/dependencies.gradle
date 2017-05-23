@@ -1,0 +1,183 @@
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://www.jitpack.io" }
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "http://192.168.0.200:8081/repository/shabro-android/" }
+        maven { url 'https://maven.google.com' }
+    }
+}
+
+ext {
+    /**
+     * official config or libs version
+     */
+
+    versionName = "0.0.5"
+    versionCode = 1
+
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.3"
+    minSdkVersion = 14
+    targetSdkVersion = 14
+    supportVersion = "25.3.1"
+
+    /**
+     * RxJava
+     */
+    rxjava2 = "2.0.8"
+    rxandroid2 = "2.0.1"
+    rxlifecycle2 = "2.0.1"
+    rxbinding = "2.0.0"
+
+    /**
+     * google
+     */
+    gson = "2.8.0"//json parser
+    glide = "3.7.0"//image loader
+    dagger2 = "2.9"//instance injection
+
+    /**
+     * square
+     */
+    okhttp3 = "3.6.0"//http client
+    retrofit2 = "2.1.0"//restful client
+    retrofit2WithRxjava2 = "1.0.0"//RxJava compat for retrofit2
+    okio = "1.11.0"
+
+    //view injection
+    butterknife = "8.5.1"
+
+    //time
+    joda = "2.9.6"
+
+    //materialDialog
+    materialDialog = "0.9.3.0"
+
+    //log
+    timber = "4.5.1"
+    loggerVersion = "1.15"
+
+    //compile time RxJava event bus
+    apollo = "1.0.0-rc.1"
+
+    okLogger = "2.1.0"
+
+    recyclerAdapterHelper = "2.9.15"
+
+    constraintLayout = "1.0.2"
+
+    stateLayout = "1.0.1"
+
+    esasing = "2.0@aar"
+
+    animation = "2.2@aar"
+
+    carousel = "0.1.3"
+
+    simpleToolbar = "0.0.3"
+
+    tabSwitchHelper = "0.0.10"
+
+    room = "1.0.0-alpha1"
+    stetho = "1.4.2"
+
+    progress = "1.2.4"
+
+    okio = "1.13.0"
+
+    /**
+     * dev libs version
+     */
+    libs = [
+            okio                  : "com.squareup.okio:okio:$okio",
+            progress              : "com.github.rey5137:material:$progress",
+            stetho                : "com.facebook.stetho:stetho:$stetho",
+            roomRxJava            : "android.arch.persistence.room:rxjava2:$room",
+            roomRuntime           : "android.arch.persistence.room:runtime:$room",
+            roomCompiler          : "android.arch.persistence.room:compiler:$room",
+            tabSwitchHelper       : "com.github.BangBangArmy:TabSwitchHelper:$tabSwitchHelper",
+            constraintLayout      : "com.android.support.constraint:constraint-layout:$constraintLayout",
+            simpleToolbar         : "cn.shabro.widget.toolbar:library:$simpleToolbar",
+            carousel              : "com.synnapps:carouselview:$carousel",
+
+            esasing               : "com.daimajia.easing:library:$esasing",
+            animation             : "com.daimajia.androidanimations:library:$animation",
+
+            //official
+            supportV4             : "com.android.support:support-v4:$supportVersion",
+            appcompat             : "com.android.support:appcompat-v7:$supportVersion",
+            recyclerView          : "com.android.support:recyclerview-v7:$supportVersion",
+            cardView              : "com.android.support:cardview-v7:$supportVersion",
+            supportDesign         : "com.android.support:design:$supportVersion",
+            supportAnnotation     : "com.android.support:support-annotations:$supportVersion",
+            supportVector         : "com.android.support:support-vector-drawable:supportVersion",
+
+            //google
+            glide                 : "com.github.bumptech.glide:glide:$glide",
+            gson                  : "com.google.code.gson:gson:$gson",
+            dagger2               : "com.google.dagger:dagger:$dagger2",
+            dagger2Compiler       : "com.google.dagger:dagger-compiler:$dagger2",
+
+            //square
+            retrofit2             : "com.squareup.retrofit2:retrofit:$retrofit2",
+            retrofit2WithGson     : "com.squareup.retrofit2:converter-gson:$retrofit2",
+            retrofit2WithRxjava2  : "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit2WithRxjava2",
+            okhttp3               : "com.squareup.okhttp3:okhttp:$okhttp3",
+            okhttp3LogInterceptor : "com.squareup.okhttp3:logging-interceptor:$okhttp3",
+            okLogger              : "com.github.simonpercic:oklog3:$okLogger",
+
+            //reactivex
+            rxjava2               : "io.reactivex.rxjava2:rxjava:$rxjava2",
+            rxandroid2            : "io.reactivex.rxjava2:rxandroid:$rxandroid2",
+
+            //rx lifecycle
+            rxlifecycle2          : "com.trello.rxlifecycle2:rxlifecycle:$rxlifecycle2",
+            rxlifecycler2Android  : "com.trello.rxlifecycle2:rxlifecycle-android:$rxlifecycle2",
+            rxlifecycle2Components: "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle2",
+            rxlifecycle2Navi      : "com.trello.rxlifecycle2:rxlifecycle-navi:$rxlifecycle2",
+            rxbinding             : "com.jakewharton.rxbinding2:rxbinding:$rxbinding",
+            rxbindingSupportV4    : "com.jakewharton.rxbinding2:rxbinding-support-v4:$rxbinding",
+            rxbindingAppcompat    : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxbinding",
+            rxbindingDesign       : "com.jakewharton.rxbinding2:rxbinding-design:$rxbinding",
+            rxbindingRecyclerView : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:$rxbinding",
+            rxbindingLeanback     : "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rxbinding",
+
+            //event bus
+            apolloCore            : "com.github.lsxiao.Apollo:core:$apollo",
+            apolloCompiler        : "com.github.lsxiao.Apollo:processor:$apollo",
+            apolloIPC             : "com.github.lsxiao.Apollo:ipc:$apollo",
+
+            //view injection
+            butterknife           : "com.jakewharton:butterknife:$butterknife",
+            butterknifeCompiler   : "com.jakewharton:butterknife-compiler:$butterknife",
+
+            //time lib
+            joda                  : "joda-time:joda-time:$joda",
+
+            //dialog
+            materialDialogCore    : "com.afollestad.material-dialogs:core:$materialDialog",
+            materialDialogCommon  : "com.afollestad.material-dialogs:commons:$materialDialog",
+
+            //logger
+            logger                : "com.orhanobut:logger:$loggerVersion",
+
+            recyclerAdapterHelper : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$recyclerAdapterHelper",
+            stateLayout           : "com.github.fingdo:stateLayout:$stateLayout"
+    ]
+
+    /**
+     * test libs version
+     */
+    espressoCore = "2.2.2"
+    junit = "4.12"
+    findBugs = "3.0.1"
+
+
+    test = [
+            espressoCore: "com.android.support.test.espresso:espresso-core:$espressoCore",
+            junit       : "junit:junit:$junit",
+            findBugs    : "com.google.code.findbugs:jsr305:$findBugs"
+    ]
+}
