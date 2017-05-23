@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnEmpty = (Button) findViewById(R.id.btn_empty);
         btnContent = (Button) findViewById(R.id.btn_content);
 
-
         capaLayout.setOnClickListener(this);
         btnLoad.setOnClickListener(this);
         btnError.setOnClickListener(this);

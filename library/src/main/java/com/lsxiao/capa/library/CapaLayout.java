@@ -2,14 +2,16 @@ package com.lsxiao.capa.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
+import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.ViewAnimator;
+
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
  * write with Capa
@@ -20,6 +22,12 @@ import android.widget.ViewAnimator;
  */
 
 public class CapaLayout extends ViewAnimator {
+    @Retention(SOURCE)
+    @IntDef({LOAD, EMPTY, ERROR, CONTENT})
+    @interface StateMode {
+
+    }
+
     public static final int LOAD = 0;
     public static final int EMPTY = 1;
     public static final int ERROR = 2;
@@ -35,11 +43,13 @@ public class CapaLayout extends ViewAnimator {
     @LayoutRes
     private int mErrorLayout;
 
+
     private View mLoadView;
     private View mEmptyView;
     private View mErrorView;
     private View mContentView;
 
+    private View mInitView;
 
     public CapaLayout(Context context) {
         this(context, null);
@@ -54,26 +64,73 @@ public class CapaLayout extends ViewAnimator {
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.CapaLayout);
         mState = a.getInt(R.styleable.CapaLayout_cp_state, LOAD);
+        mLoadLayout = a.getInt(R.styleable.CapaLayout_cp_load_layout, R.layout.capa_load_layout);
+        mEmptyLayout = a.getInt(R.styleable.CapaLayout_cp_empty_layout, R.layout.capa_empty_layout);
+        mErrorLayout = a.getInt(R.styleable.CapaLayout_cp_error_layout, R.layout.capa_error_layout);
         a.recycle();
     }
 
+
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
+    protected void onFinishInflate() {
+        super.onFinishInflate();
         init();
     }
 
+
     private void init() {
-        if (getChildCount() == 0) {
-            throw new IllegalArgumentException("你必须提供一个content布局");
-        }
-
-        if (getChildCount() > 1) {
-            throw new IllegalArgumentException("你只能提供一个子布局");
-        }
-
         initViews();
         initAnimation();
+    }
+
+
+    private void initViews() {
+        check();
+
+        mContentView = getChildAt(0);
+        mLoadView = LayoutInflater.from(getContext()).inflate(mLoadLayout, this, false);
+        mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyLayout, this, false);
+        mErrorView = LayoutInflater.from(getContext()).inflate(mErrorLayout, this, false);
+
+        addView(mEmptyView, getChildCount());
+        addView(mErrorView, getChildCount());
+        addView(mLoadView, getChildCount());
+
+        hideAllView();
+        findInitView().setVisibility(VISIBLE);
+    }
+
+
+    private void check() {
+        if (getChildCount() != 1) {
+            throw new IllegalArgumentException("Child node which in CapaLayout must exist, and there can be only one.(CapaLayout的子节点必须存在，且只能有一个。)");
+        }
+    }
+
+
+    private View findInitView() {
+        switch (mState) {
+            case CONTENT:
+                mInitView = mContentView;
+                break;
+            case LOAD:
+                mInitView = mLoadView;
+                break;
+            case EMPTY:
+                mInitView = mEmptyView;
+                break;
+            case ERROR:
+                mInitView = mErrorView;
+                break;
+        }
+        return mInitView;
+    }
+
+    private void hideAllView() {
+        mContentView.setVisibility(GONE);
+        mLoadView.setVisibility(GONE);
+        mEmptyView.setVisibility(GONE);
+        mErrorView.setVisibility(GONE);
     }
 
     private void initAnimation() {
@@ -81,62 +138,34 @@ public class CapaLayout extends ViewAnimator {
         setOutAnimation(getContext(), R.anim.capa_fade_out);
     }
 
-    private void initViews() {
-        mLoadView = getT("load");
-        mEmptyView = getT("empty");
-        mErrorView = getT("error");
-        mContentView = getT("content");
-
-        addView(mLoadView);
-        addView(mEmptyView);
-        addView(mErrorView);
-        addView(mContentView);
-
-
-        hideALl();
-        if (mState == LOAD) {
-            mLoadView.setVisibility(VISIBLE);
-        } else if (mState == ERROR) {
-            mEmptyView.setVisibility(VISIBLE);
-        } else if (mState == EMPTY) {
-            mErrorView.setVisibility(VISIBLE);
-        } else if (mState == CONTENT) {
-            mContentView.setVisibility(VISIBLE);
-        }
-
-    }
-
-    private void hideALl() {
-        mLoadView.setVisibility(GONE);
-        mEmptyView.setVisibility(GONE);
-        mErrorView.setVisibility(GONE);
-        mContentView.setVisibility(GONE);
-    }
-
-    private TextView getT(String title) {
-        TextView textView = new TextView(getContext());
-        textView.setText(title);
-        textView.setTextColor(Color.BLACK);
-        textView.setGravity(Gravity.CENTER);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        textView.setLayoutParams(layoutParams);
-        return textView;
-    }
-
     public int getState() {
         return mState;
     }
 
-    public void to(int state) {
-        if (state == mState) {
+    public void to(@StateMode int state) {
+        if (mState == state) {
             return;
         }
+        setDisplayedChild(getViewIndexByState(state));
         mState = state;
-        setDisplayedChild(mState);
     }
 
     public void toContent() {
         to(CONTENT);
+    }
+
+    private int getViewIndexByState(@StateMode int state) {
+        switch (state) {
+            case LOAD:
+                return indexOfChild(mLoadView);
+            case EMPTY:
+                return indexOfChild(mEmptyView);
+            case ERROR:
+                return indexOfChild(mErrorView);
+            case CONTENT:
+            default:
+                return indexOfChild(mContentView);
+        }
     }
 
     public void toError() {
