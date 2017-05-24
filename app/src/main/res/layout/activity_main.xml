@@ -61,7 +61,7 @@
         android:id="@+id/capa_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cp_anim_enable="false"
+        app:cp_anim_enable="true"
         app:cp_empty_layout="@layout/capa_empty_layout"
         app:cp_error_layout="@layout/capa_error_layout"
         app:cp_load_layout="@layout/capa_load_layout"
