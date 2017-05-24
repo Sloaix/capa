@@ -144,7 +144,7 @@ public class CapaLayout extends ViewAnimator {
     }
 
     public void animSlideInBottom() {
-        animIn(R.anim.capa_slide_in_top);
+        animIn(R.anim.capa_slide_in_bottom);
         animOut(R.anim.capa_fade_out);
     }
 
