@@ -46,7 +46,7 @@ dependencies {
     app:cp_error_layout="@layout/capa_error_layout"
     app:cp_load_layout="@layout/capa_load_layout"
 
-    app:cp_anim_enable="false"
+    app:cp_anim_enable="true"
     app:cp_state="load">
 
     <!-- your content layout or view-->
@@ -69,11 +69,11 @@ cataLayout.toContent();
 ```
 
 ### animation
+#### not show animation
 animation default is enabled.
 
-use `app:cp_anim_enable="true"` to change.
+use `app:cp_anim_enable="true"` to change,or use animNone() method in your code.
 
-#### not show animation
 ```java
 capaLayout.animNone();//not show animation.
 ```
