@@ -1,4 +1,4 @@
-package com.lsxiao.capa.demo;
+package com.lsxiao.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.lsxiao.capa.R;
 import com.lsxiao.capa.library.CapaLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
