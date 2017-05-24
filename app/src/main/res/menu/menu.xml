@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_no_animation"
+        android:title="@string/no_animation"/>
+    <item
+        android:id="@+id/item_fade"
+        android:title="@string/fade"/>
+    <item
+        android:id="@+id/item_slide_top"
+        android:title="@string/slide_in_top_fade_out"/>
+    <item
+        android:id="@+id/item_slide_bottom"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/slide_in_bottom_fade_out"/>
+</menu>

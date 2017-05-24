@@ -2,6 +2,9 @@ package com.lsxiao.capa.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnError;
     Button btnEmpty;
     Button btnContent;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +28,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnError = (Button) findViewById(R.id.btn_error);
         btnEmpty = (Button) findViewById(R.id.btn_empty);
         btnContent = (Button) findViewById(R.id.btn_content);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
 
         capaLayout.setOnClickListener(this);
         btnLoad.setOnClickListener(this);
         btnError.setOnClickListener(this);
         btnEmpty.setOnClickListener(this);
         btnContent.setOnClickListener(this);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_no_animation: {
+                capaLayout.animNone();
+                return true;
+            }
+            case R.id.item_fade: {
+                capaLayout.animFade();
+                return true;
+            }
+            case R.id.item_slide_top: {
+                capaLayout.animIn(R.anim.capa_slide_in_top);
+                capaLayout.animOut(R.anim.capa_fade_out);
+                return true;
+            }
+            case R.id.item_slide_bottom: {
+                capaLayout.animIn(R.anim.capa_slide_in_bottom);
+                capaLayout.animOut(R.anim.capa_fade_out);
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
