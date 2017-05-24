@@ -25,7 +25,7 @@ depend these in your build.gralde.
 
 ```groovy
 dependencies {
-  compile "com.github.lsxiao.capa:library:1.0.0"
+  compile "com.github.lsxiao.capa:library:1.0.1"
 }
 ```
 
