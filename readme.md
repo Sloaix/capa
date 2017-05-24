@@ -4,6 +4,8 @@
 
 a lightly state layout for android.
 
+![gif](https://raw.githubusercontent.com/lsxiao/capa/master/demo.gif)
+
 ## Start
 
 quick integration with 3 minutes
