@@ -33,13 +33,13 @@ dependencies {
 
 ### init
 
- use `com.lsxiao.capa.library.CapaLayout` to wrap your own content layout or view.
+ use `com.lsxiao.capa.CapaLayout` to wrap your own content layout or view.
 
  cp_state is the attribute for first show state layout
 
  default is load state(`load`,`empty`,`error`,`content`)
 ```xml
-<com.lsxiao.capa.library.CapaLayout
+<com.lsxiao.capa.CapaLayout
     android:id="@+id/capa_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -59,7 +59,7 @@ dependencies {
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</com.lsxiao.capa.library.CapaLayout>
+</com.lsxiao.capa.CapaLayout>
 ```
 
 ### switch state
