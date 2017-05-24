@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.lsxiao.capa.demo.MainActivity">
+    tools:context="com.lsxiao.capa.com.lsxiao.demo.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
