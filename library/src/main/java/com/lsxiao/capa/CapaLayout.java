@@ -2,10 +2,17 @@ package com.lsxiao.capa;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.AnimRes;
+import android.support.annotation.IntDef;
+import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ViewAnimator;
+
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
  * write with Capa
@@ -16,11 +23,11 @@ import android.widget.ViewAnimator;
  */
 
 public class CapaLayout extends ViewAnimator {
-//    @Retention(SOURCE)
-//    @IntDef({LOAD, EMPTY, ERROR, CONTENT})
-//    @interface StateMode {
-//
-//    }
+    @Retention(SOURCE)
+    @IntDef({LOAD, EMPTY, ERROR, CONTENT})
+    @interface StateMode {
+
+    }
 
     public static final int LOAD = 0;
     public static final int EMPTY = 1;
@@ -30,11 +37,11 @@ public class CapaLayout extends ViewAnimator {
 
     private int mState = CONTENT;
 
-    //    @LayoutRes
+    @LayoutRes
     private int mLoadLayoutId;
-    //    @LayoutRes
+    @LayoutRes
     private int mEmptyLayoutId;
-    //    @LayoutRes
+    @LayoutRes
     private int mErrorLayoutId;
 
 
@@ -153,11 +160,11 @@ public class CapaLayout extends ViewAnimator {
         setOutAnimation(null);
     }
 
-    public void animIn(int in) {
+    public void animIn(@AnimRes int in) {
         setInAnimation(getContext(), in);
     }
 
-    public void animOut(int out) {
+    public void animOut(@AnimRes int out) {
         setOutAnimation(getContext(), out);
     }
 
@@ -165,7 +172,7 @@ public class CapaLayout extends ViewAnimator {
         return mState;
     }
 
-    public boolean isState(int state) {
+    public boolean isState(@StateMode int state) {
         return mState == state;
     }
 
@@ -181,7 +188,7 @@ public class CapaLayout extends ViewAnimator {
         to(CONTENT);
     }
 
-    private int getViewIndexByState(int state) {
+    private int getViewIndexByState(@StateMode int state) {
         switch (state) {
             case LOAD:
                 return indexOfChild(mLoadView);

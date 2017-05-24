@@ -18,13 +18,10 @@ android {
     }
 }
 dependencies {
-
-    compile project(":library")
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
 
-    compile project(":library")
-//    compile 'com.github.lsxiao:capa:87055ead38'
+    compile 'com.github.lsxiao:capa:68bd4e6545'
     compile parent.ext.libs.cardView
 }
