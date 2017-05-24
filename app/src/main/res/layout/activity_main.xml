@@ -27,40 +27,44 @@
         <Button
             android:id="@+id/btn_load"
             android:layout_width="0dp"
-            android:textSize="12sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="load"/>
+            android:text="load"
+            android:textSize="12sp"/>
 
         <Button
             android:id="@+id/btn_error"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="error"/>
+            android:text="error"
+            android:textSize="12sp"/>
 
         <Button
             android:id="@+id/btn_empty"
             android:layout_width="0dp"
-            android:textSize="12sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="empty"/>
+            android:text="empty"
+            android:textSize="12sp"/>
 
         <Button
             android:id="@+id/btn_content"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="content"/>
+            android:text="content"
+            android:textSize="12sp"/>
     </LinearLayout>
 
     <com.lsxiao.capa.library.CapaLayout
         android:id="@+id/capa_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cp_anim_enable="false"
+        app:cp_empty_layout="@layout/capa_empty_layout"
+        app:cp_error_layout="@layout/capa_error_layout"
+        app:cp_load_layout="@layout/capa_load_layout"
         app:cp_state="load">
 
         <android.support.v7.widget.CardView
