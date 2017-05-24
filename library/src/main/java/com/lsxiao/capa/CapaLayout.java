@@ -50,7 +50,9 @@ public class CapaLayout extends ViewAnimator {
     private View mErrorView;
     private View mContentView;
     private View mInitView;
-    private boolean mInitAnimation;
+    private boolean mAnimEnable;
+    private int mAnimIn;
+    private int mAnimOut;
 
     public CapaLayout(Context context) {
         this(context, null);
@@ -68,7 +70,9 @@ public class CapaLayout extends ViewAnimator {
         mLoadLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_load_layout, R.layout.capa_load_layout);
         mEmptyLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_empty_layout, R.layout.capa_empty_layout);
         mErrorLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_error_layout, R.layout.capa_error_layout);
-        mInitAnimation = a.getBoolean(R.styleable.CapaLayout_cp_anim_enable, true);
+        mAnimEnable = a.getBoolean(R.styleable.CapaLayout_cp_anim_enable, true);
+        mAnimIn = a.getResourceId(R.styleable.CapaLayout_cp_anim_in, R.anim.capa_fade_in);
+        mAnimOut = a.getResourceId(R.styleable.CapaLayout_cp_anim_out, R.anim.capa_fade_out);
         a.recycle();
     }
 
@@ -134,10 +138,11 @@ public class CapaLayout extends ViewAnimator {
     }
 
     private void initAnimation() {
-        if (!mInitAnimation) {
+        if (!mAnimEnable) {
             return;
         }
-        animFade();
+        animIn(mAnimIn);
+        animOut(mAnimOut);
     }
 
     public void animFade() {

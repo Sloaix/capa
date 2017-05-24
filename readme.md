@@ -44,6 +44,9 @@ dependencies {
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    app:cp_anim_in="@anim/capa_fade_in"
+    app:cp_anim_out="@anim/capa_fade_out"
+
     app:cp_empty_layout="@layout/capa_empty_layout"
     app:cp_error_layout="@layout/capa_error_layout"
     app:cp_load_layout="@layout/capa_load_layout"
@@ -94,6 +97,13 @@ capaLayout.animeSlideInBottom();
 capaLayout.animIn(...);
 
 capaLayout.animOut(...);
+```
+
+or
+
+```xml
+app:cp_anim_in="..."
+app:cp_anim_out="..."
 ```
 
 ### get state view
