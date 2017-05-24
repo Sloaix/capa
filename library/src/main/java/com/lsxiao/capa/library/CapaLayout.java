@@ -134,12 +134,22 @@ public class CapaLayout extends ViewAnimator {
     }
 
     private void initAnimation() {
-        setInAnimation(getContext(), R.anim.capa_fade_in);
-        setOutAnimation(getContext(), R.anim.capa_fade_out);
+        animIn(R.anim.capa_fade_in);
+        animOut(R.anim.capa_fade_out);
     }
 
     public void animFade() {
         initAnimation();
+    }
+
+    public void animeSlideInTop() {
+        animIn(R.anim.capa_slide_in_top);
+        animOut(R.anim.capa_fade_out);
+    }
+
+    public void animeSlideInBottom() {
+        animIn(R.anim.capa_slide_in_top);
+        animOut(R.anim.capa_fade_out);
     }
 
     public void animNone() {
@@ -163,7 +173,7 @@ public class CapaLayout extends ViewAnimator {
         return mState == state;
     }
 
-    private void to(@StateMode int state) {
+    public void to(@StateMode int state) {
         if (mState == state) {
             return;
         }
