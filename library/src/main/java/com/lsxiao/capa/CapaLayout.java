@@ -1,4 +1,4 @@
-package com.lsxiao.capa.library;
+package com.lsxiao.capa;
 
 import android.content.Context;
 import android.content.res.TypedArray;
