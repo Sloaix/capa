@@ -57,13 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
             case R.id.item_slide_top: {
-                capaLayout.animIn(R.anim.capa_slide_in_top);
-                capaLayout.animOut(R.anim.capa_fade_out);
+                capaLayout.animSlideInTop();
                 return true;
             }
             case R.id.item_slide_bottom: {
-                capaLayout.animIn(R.anim.capa_slide_in_bottom);
-                capaLayout.animOut(R.anim.capa_fade_out);
+                capaLayout.animSlideInBottom();
                 return true;
             }
         }

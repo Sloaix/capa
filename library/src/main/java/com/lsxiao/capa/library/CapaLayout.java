@@ -38,19 +38,19 @@ public class CapaLayout extends ViewAnimator {
     private int mState = CONTENT;
 
     @LayoutRes
-    private int mLoadLayout;
+    private int mLoadLayoutId;
     @LayoutRes
-    private int mEmptyLayout;
+    private int mEmptyLayoutId;
     @LayoutRes
-    private int mErrorLayout;
+    private int mErrorLayoutId;
 
 
     private View mLoadView;
     private View mEmptyView;
     private View mErrorView;
     private View mContentView;
-
     private View mInitView;
+    private boolean mInitAnimation;
 
     public CapaLayout(Context context) {
         this(context, null);
@@ -65,12 +65,12 @@ public class CapaLayout extends ViewAnimator {
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.CapaLayout);
         mState = a.getInt(R.styleable.CapaLayout_cp_state, LOAD);
-        mLoadLayout = a.getInt(R.styleable.CapaLayout_cp_load_layout, R.layout.capa_load_layout);
-        mEmptyLayout = a.getInt(R.styleable.CapaLayout_cp_empty_layout, R.layout.capa_empty_layout);
-        mErrorLayout = a.getInt(R.styleable.CapaLayout_cp_error_layout, R.layout.capa_error_layout);
+        mLoadLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_load_layout, R.layout.capa_load_layout);
+        mEmptyLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_empty_layout, R.layout.capa_empty_layout);
+        mErrorLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_error_layout, R.layout.capa_error_layout);
+        mInitAnimation = a.getBoolean(R.styleable.CapaLayout_cp_anim_enable, true);
         a.recycle();
     }
-
 
     @Override
     protected void onFinishInflate() {
@@ -89,9 +89,9 @@ public class CapaLayout extends ViewAnimator {
         check();
 
         mContentView = getChildAt(0);
-        mLoadView = LayoutInflater.from(getContext()).inflate(mLoadLayout, this, false);
-        mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyLayout, this, false);
-        mErrorView = LayoutInflater.from(getContext()).inflate(mErrorLayout, this, false);
+        mLoadView = LayoutInflater.from(getContext()).inflate(mLoadLayoutId, this, false);
+        mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyLayoutId, this, false);
+        mErrorView = LayoutInflater.from(getContext()).inflate(mErrorLayoutId, this, false);
 
         addView(mEmptyView, getChildCount());
         addView(mErrorView, getChildCount());
@@ -134,6 +134,9 @@ public class CapaLayout extends ViewAnimator {
     }
 
     private void initAnimation() {
+        if (!mInitAnimation) {
+            return;
+        }
         animIn(R.anim.capa_fade_in);
         animOut(R.anim.capa_fade_out);
     }
@@ -142,12 +145,12 @@ public class CapaLayout extends ViewAnimator {
         initAnimation();
     }
 
-    public void animeSlideInTop() {
+    public void animSlideInTop() {
         animIn(R.anim.capa_slide_in_top);
         animOut(R.anim.capa_fade_out);
     }
 
-    public void animeSlideInBottom() {
+    public void animSlideInBottom() {
         animIn(R.anim.capa_slide_in_top);
         animOut(R.anim.capa_fade_out);
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CapaLayout">
+        <attr name="cp_anim_enable" format="boolean"/>
         <attr name="cp_state" format="enum">
             <enum name="load" value="0"/>
             <enum name="empty" value="1"/>
