@@ -74,7 +74,7 @@ cataLayout.toContent();
 #### not show animation
 animation default is enabled.
 
-use `app:cp_anim_enable="true"` to change,or use animNone() method in your code.
+use `app:cp_anim_enable="false"` to change,or use animNone() method in your code.
 
 ```java
 capaLayout.animNone();//not show animation.
