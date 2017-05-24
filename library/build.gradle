@@ -15,5 +15,4 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     def libs = parent.ext.libs
-    compile libs.supportAnnotation
 }

@@ -17,7 +17,6 @@ android {
         }
     }
 }
-
 dependencies {
 
     compile project(":library")
@@ -26,6 +25,6 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
 
     compile project(":library")
-//    compile 'com.github.lsxiao:capa:c5f87fe915'
+//    compile 'com.github.lsxiao:capa:5eb19c51fe'
     compile parent.ext.libs.cardView
 }
