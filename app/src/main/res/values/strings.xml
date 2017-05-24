@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Capa</string>
+    <string name="title_activity_capa_layout">CapaLayoutActivity</string>
+    <string name="no_animation">No Animation</string>
+    <string name="fade">Fade</string>
+    <string name="slide_in_top_fade_out">Slide In Top Fade Out</string>
+    <string name="slide_in_bottom_fade_out">Slide In Bottom Fade Out</string>
 </resources>

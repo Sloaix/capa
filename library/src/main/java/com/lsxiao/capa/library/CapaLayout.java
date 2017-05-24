@@ -2,6 +2,7 @@ package com.lsxiao.capa.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.AnimRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
@@ -107,7 +108,6 @@ public class CapaLayout extends ViewAnimator {
         }
     }
 
-
     private View findInitView() {
         switch (mState) {
             case CONTENT:
@@ -138,11 +138,32 @@ public class CapaLayout extends ViewAnimator {
         setOutAnimation(getContext(), R.anim.capa_fade_out);
     }
 
+    public void animFade() {
+        initAnimation();
+    }
+
+    public void animNone() {
+        setInAnimation(null);
+        setOutAnimation(null);
+    }
+
+    public void animIn(@AnimRes int in) {
+        setInAnimation(getContext(), in);
+    }
+
+    public void animOut(@AnimRes int out) {
+        setOutAnimation(getContext(), out);
+    }
+
     public int getState() {
         return mState;
     }
 
-    public void to(@StateMode int state) {
+    public boolean isState(@StateMode int state) {
+        return mState == state;
+    }
+
+    private void to(@StateMode int state) {
         if (mState == state) {
             return;
         }
@@ -178,6 +199,23 @@ public class CapaLayout extends ViewAnimator {
 
     public void toEmpty() {
         to(EMPTY);
+    }
+
+
+    public View getLoadView() {
+        return mLoadView;
+    }
+
+    public View getEmptyView() {
+        return mEmptyView;
+    }
+
+    public View getErrorView() {
+        return mErrorView;
+    }
+
+    public View getContentView() {
+        return mContentView;
     }
 
 }
