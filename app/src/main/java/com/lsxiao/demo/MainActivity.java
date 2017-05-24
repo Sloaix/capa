@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.lsxiao.capa.library.CapaLayout;
+import com.lsxiao.capa.CapaLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     CapaLayout capaLayout;
