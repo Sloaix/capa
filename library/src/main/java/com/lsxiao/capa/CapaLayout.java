@@ -66,7 +66,7 @@ public class CapaLayout extends ViewAnimator {
     private void receiveAttributes(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.CapaLayout);
-        mState = a.getInt(R.styleable.CapaLayout_cp_state, LOAD);
+        mState = isInEditMode() ? CONTENT : a.getInt(R.styleable.CapaLayout_cp_state, LOAD);
         mLoadLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_load_layout, R.layout.capa_load_layout);
         mEmptyLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_empty_layout, R.layout.capa_empty_layout);
         mErrorLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_error_layout, R.layout.capa_error_layout);
