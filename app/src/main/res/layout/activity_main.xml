@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="load"
-            android:textSize="12sp"/>
+            android:textSize="8sp"/>
 
         <Button
             android:id="@+id/btn_error"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="error"
-            android:textSize="12sp"/>
+            android:textSize="8sp"/>
 
         <Button
             android:id="@+id/btn_empty"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="empty"
-            android:textSize="12sp"/>
+            android:textSize="8sp"/>
 
         <Button
             android:id="@+id/btn_content"
@@ -52,7 +52,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="content"
-            android:textSize="12sp"/>
+            android:textSize="8sp"/>
+
+        <Button
+            android:id="@+id/btn_network_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="netError"
+            android:textSize="8sp"/>
     </LinearLayout>
 
     <com.lsxiao.capa.CapaLayout

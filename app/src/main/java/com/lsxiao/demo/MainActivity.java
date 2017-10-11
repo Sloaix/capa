@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnError;
     Button btnEmpty;
     Button btnContent;
+    Button btnNetworkError;
     Toolbar toolbar;
 
     @Override
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnError = (Button) findViewById(R.id.btn_error);
         btnEmpty = (Button) findViewById(R.id.btn_empty);
         btnContent = (Button) findViewById(R.id.btn_content);
+        btnNetworkError = (Button) findViewById(R.id.btn_network_error);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnError.setOnClickListener(this);
         btnEmpty.setOnClickListener(this);
         btnContent.setOnClickListener(this);
+        btnNetworkError.setOnClickListener(this );
     }
 
     @Override
@@ -81,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_content:
                 capaLayout.toContent();
+                break;
+            case R.id.btn_network_error:
+                capaLayout.toNetworkError();
                 break;
             case R.id.capa_layout:
                 break;

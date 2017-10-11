@@ -24,15 +24,16 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class CapaLayout extends ViewAnimator {
     @Retention(SOURCE)
-    @IntDef({LOAD, EMPTY, ERROR, CONTENT})
+    @IntDef({LOAD, EMPTY, ERROR, CONTENT, NETWORK_ERROR})
     @interface StateMode {
 
     }
 
     public static final int LOAD = 0;
-    public static final int EMPTY = 1;
-    public static final int ERROR = 2;
-    public static final int CONTENT = 3;
+    public static final int EMPTY = LOAD + 1;
+    public static final int ERROR = EMPTY + 1;
+    public static final int CONTENT = ERROR + 1;
+    public static final int NETWORK_ERROR = CONTENT + 1;
 
 
     private int mState = CONTENT;
@@ -43,12 +44,14 @@ public class CapaLayout extends ViewAnimator {
     private int mEmptyLayoutId;
     @LayoutRes
     private int mErrorLayoutId;
-
+    @LayoutRes
+    private int mNetworkErrorLayoutId;
 
     private View mLoadView;
     private View mEmptyView;
     private View mErrorView;
     private View mContentView;
+    private View mNetworkView;
     private View mInitView;
     private boolean mAnimEnable;
     private int mAnimIn;
@@ -70,6 +73,7 @@ public class CapaLayout extends ViewAnimator {
         mLoadLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_load_layout, R.layout.capa_load_layout);
         mEmptyLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_empty_layout, R.layout.capa_empty_layout);
         mErrorLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_error_layout, R.layout.capa_error_layout);
+        mNetworkErrorLayoutId = a.getResourceId(R.styleable.CapaLayout_cp_network_error_layout, R.layout.capa_network_error_layout);
         mAnimEnable = a.getBoolean(R.styleable.CapaLayout_cp_anim_enable, true);
         mAnimIn = a.getResourceId(R.styleable.CapaLayout_cp_anim_in, R.anim.capa_fade_in);
         mAnimOut = a.getResourceId(R.styleable.CapaLayout_cp_anim_out, R.anim.capa_fade_out);
@@ -96,10 +100,12 @@ public class CapaLayout extends ViewAnimator {
         mLoadView = LayoutInflater.from(getContext()).inflate(mLoadLayoutId, this, false);
         mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyLayoutId, this, false);
         mErrorView = LayoutInflater.from(getContext()).inflate(mErrorLayoutId, this, false);
+        mNetworkView = LayoutInflater.from(getContext()).inflate(mNetworkErrorLayoutId, this, false);
 
         addView(mEmptyView, getChildCount());
         addView(mErrorView, getChildCount());
         addView(mLoadView, getChildCount());
+        addView(mNetworkView, getChildCount());
 
         hideAllView();
         findInitView().setVisibility(VISIBLE);
@@ -125,6 +131,9 @@ public class CapaLayout extends ViewAnimator {
                 break;
             case ERROR:
                 mInitView = mErrorView;
+                break;
+            case NETWORK_ERROR:
+                mInitView = mNetworkView;
                 break;
         }
         return mInitView;
@@ -201,6 +210,8 @@ public class CapaLayout extends ViewAnimator {
                 return indexOfChild(mEmptyView);
             case ERROR:
                 return indexOfChild(mErrorView);
+            case NETWORK_ERROR:
+                return indexOfChild(mNetworkView);
             case CONTENT:
             default:
                 return indexOfChild(mContentView);
@@ -209,6 +220,10 @@ public class CapaLayout extends ViewAnimator {
 
     public void toError() {
         to(ERROR);
+    }
+
+    public void toNetworkError() {
+        to(NETWORK_ERROR);
     }
 
     public void toLoad() {

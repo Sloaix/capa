@@ -9,9 +9,11 @@
             <enum name="empty" value="1"/>
             <enum name="error" value="2"/>
             <enum name="content" value="3"/>
+            <enum name="network_error" value="4"/>
         </attr>
         <attr name="cp_load_layout" format="reference"/>
         <attr name="cp_error_layout" format="reference"/>
         <attr name="cp_empty_layout" format="reference"/>
+        <attr name="cp_network_error_layout" format="reference"/>
     </declare-styleable>
 </resources>
