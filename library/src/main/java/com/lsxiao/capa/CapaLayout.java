@@ -251,4 +251,7 @@ public class CapaLayout extends ViewAnimator {
         return mContentView;
     }
 
+    public View getNetworkView() {
+        return mNetworkView;
+    }
 }

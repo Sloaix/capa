@@ -49,6 +49,7 @@ dependencies {
 
     app:cp_empty_layout="@layout/capa_empty_layout"
     app:cp_error_layout="@layout/capa_error_layout"
+    app:cp_network_error_layout="@layout/capa_network_error_layout"
     app:cp_load_layout="@layout/capa_load_layout"
 
     app:cp_anim_enable="true"
@@ -69,6 +70,8 @@ cataLayout.toLoad();
 cataLayout.toEmpty();
 
 cataLayout.toError();
+
+cataLayout.toNetworkError();
 
 cataLayout.toContent();
 ```
@@ -115,6 +118,9 @@ capaLayout.getEmptyView();
 capaLayout.getErrorView();
 
 capaLayout.getContentView();
+
+capaLayout.getNetworkView();
+
 ```
 
 ## How to contribute
